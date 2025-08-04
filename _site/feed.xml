@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/BlogsGuidesResources/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/BlogsGuidesResources/" rel="alternate" type="text/html" /><updated>2025-08-04T21:49:24+08:00</updated><id>http://localhost:4000/BlogsGuidesResources/feed.xml</id><title type="html">Guides Blogs And Resources</title><subtitle>Everyday knowledge tits, bits and concepts made to access.</subtitle><author><name>Amrit Dhakal</name></author><entry><title type="html">Deleting git branches</title><link href="http://localhost:4000/BlogsGuidesResources/first-blog.html" rel="alternate" type="text/html" title="Deleting git branches" /><published>2025-08-04T21:31:00+08:00</published><updated>2025-08-04T21:31:00+08:00</updated><id>http://localhost:4000/BlogsGuidesResources/first-blog</id><content type="html" xml:base="http://localhost:4000/BlogsGuidesResources/first-blog.html"><![CDATA[<h2 id="to-completely-reset-your-git-repository-to-a-state-with-no-branches-essentially-a-fresh-start-while-keeping-your-files-follow-these-steps">To completely reset your Git repository to a state with <strong>no branches</strong> (essentially a fresh start while keeping your files), follow these steps:</h2>
+
+<hr />
+
+<h3 id="1-delete-all-branches-including-mainmaster"><strong>1. Delete All Branches (Including <code class="language-plaintext highlighter-rouge">main</code>/<code class="language-plaintext highlighter-rouge">master</code>)</strong></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Move to a temporary branch (can't delete current branch)</span>
+git checkout <span class="nt">--orphan</span> temp_branch
+
+<span class="c"># Delete ALL branches except temp_branch</span>
+git branch | <span class="nb">grep</span> <span class="nt">-v</span> <span class="s2">"temp_branch"</span> | xargs git branch <span class="nt">-D</span>
+</code></pre></div></div>
+
+<h3 id="2-remove-all-git-history"><strong>2. Remove All Git History</strong></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Remove all tracked files (keeps working files)</span>
+git <span class="nb">rm</span> <span class="nt">-rf</span> <span class="nb">.</span>
+
+<span class="c"># Remove Git metadata (except .git/config)</span>
+<span class="nb">rm</span> <span class="nt">-rf</span> .git/refs .git/objects .git/logs
+</code></pre></div></div>
+
+<h3 id="3-reinitialize-git"><strong>3. Reinitialize Git</strong></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Fresh Git init (keeps your files)</span>
+git init
+
+<span class="c"># Optional: Recreate main branch</span>
+git checkout <span class="nt">-b</span> main
+</code></pre></div></div>
+
+<h3 id="4-push-to-remote-if-needed"><strong>4. Push to Remote (If Needed)</strong></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Force-push empty state (destroys remote history)</span>
+git remote add origin &lt;your-repo-url&gt;
+git push <span class="nt">--force</span> origin main
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="what-this-does"><strong>What This Does</strong></h3>
+<ul>
+  <li>Creates a new Git history with <strong>no branches</strong> initially</li>
+  <li>Preserves your working files (they become unstaged)</li>
+  <li>Clears all commit history, tags, and branches</li>
+</ul>
+
+<hr />
+
+<h3 id="alternative-nuclear-option"><strong>Alternative (Nuclear Option)</strong></h3>
+<p>To <strong>completely remove Git</strong> and start fresh:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-rf</span> .git  <span class="c"># Deletes all Git data</span>
+git init     <span class="c"># New repository</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="important-notes"><strong>Important Notes</strong></h3>
+<p>⚠️ <strong>This is destructive!</strong></p>
+<ul>
+  <li>You’ll lose all branch history</li>
+  <li>Remote repos need <code class="language-plaintext highlighter-rouge">--force</code> pushes</li>
+  <li>Backup first if unsure (<code class="language-plaintext highlighter-rouge">cp -r project project-backup</code>)</li>
+</ul>
+
+<hr />
+
+<h3 id="after-resetting"><strong>After Resetting</strong></h3>
+<ol>
+  <li>Add files:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Initial commit"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Connect to remote:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin &lt;your-repo-url&gt;
+git push <span class="nt">-u</span> origin main
+</code></pre></div>    </div>
+  </li>
+</ol>]]></content><author><name>Amrit  Dhakal</name></author><category term="blogging" /><category term="tutorial" /><summary type="html"><![CDATA[Deleting git branches]]></summary></entry><entry><title type="html">New tutorial ready to write</title><link href="http://localhost:4000/BlogsGuidesResources/New-Tutrial.html" rel="alternate" type="text/html" title="New tutorial ready to write" /><published>2025-08-04T17:51:00+08:00</published><updated>2025-08-04T17:51:00+08:00</updated><id>http://localhost:4000/BlogsGuidesResources/New-Tutrial</id><content type="html" xml:base="http://localhost:4000/BlogsGuidesResources/New-Tutrial.html"><![CDATA[<p>Content goes here</p>]]></content><author><name>Amrit  Dhakal</name></author><category term="coding" /><category term="python" /><summary type="html"><![CDATA[New tutorial or blog]]></summary></entry><entry><title type="html">How to Create Jekyll Websites Part 2</title><link href="http://localhost:4000/BlogsGuidesResources/creating-gh-pages.html" rel="alternate" type="text/html" title="How to Create Jekyll Websites Part 2" /><published>2025-08-04T17:51:00+08:00</published><updated>2025-08-04T17:51:00+08:00</updated><id>http://localhost:4000/BlogsGuidesResources/creating-gh-pages</id><content type="html" xml:base="http://localhost:4000/BlogsGuidesResources/creating-gh-pages.html"><![CDATA[<h3 id="creating-github-pages-from-exitsting-jekyll-themes">Creating github pages from exitsting jekyll themes</h3>
+
+<ul>
+  <li>Search and find a repository theme you like</li>
+  <li>Fork or clone it to the local machine</li>
+  <li>Edit the main parts to see the changes</li>
+  <li>Use installed jekyll and ruby to see changes locally</li>
+  <li>After enough changes to post it on the github pages open bash terminal and use following codes</li>
+  <li>First cd to the folder where the cloned and edited themed page is then</li>
+  <li>Delete previous .git
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm </span>rf .git
+</code></pre></div>    </div>
+  </li>
+  <li>Initiate new .git
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+</code></pre></div>    </div>
+  </li>
+  <li>Checkout github pages branches
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git checkout <span class="nt">-b</span> gh-pages
+</code></pre></div>    </div>
+  </li>
+  <li>To see the git status of current directory
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git status
+</code></pre></div>    </div>
+  </li>
+  <li>Stage all files and folders in the current directory to commit to github pages
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Initial commit
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git commit <span class="nt">-m</span> <span class="s2">"Initial commit"</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Create a empty repository in github</p>
+  </li>
+  <li>Now to link the current local repository to the github repository we just created.</li>
+  <li>Go and grab the link from the newly created empty repository the link with remote add origin - fifth line, then use following command in local repository
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin http://github.com ...
+</code></pre></div>    </div>
+  </li>
+  <li>Now we just push the gh-pages
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push origin gh-pages
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Go ahead and refresh the github repository online and we can see the files uploaded. Make sure the branch is gh-pages and the all the files are there.</p>
+  </li>
+  <li>After that just goto <code class="language-plaintext highlighter-rouge">Settings</code> tab on top and then go to <code class="language-plaintext highlighter-rouge">Pages</code> tab on left where you can see the link to newly created github page as Your site is live at <code class="language-plaintext highlighter-rouge">https://Username.github.io/RepositoryName/</code>.</li>
+</ul>
+
+<p>Video tutorial: 
+https://www.youtube.com/watch?v=fqFjuX4VZmU</p>]]></content><author><name>Amrit  Dhakal</name></author><category term="coding" /><category term="python" /><summary type="html"><![CDATA[Creating github pages from exitsting jekyll themes]]></summary></entry><entry><title type="html">How to Create Jekyll Website Part 1</title><link href="http://localhost:4000/BlogsGuidesResources/how-to-create-jekyll-website.html" rel="alternate" type="text/html" title="How to Create Jekyll Website Part 1" /><published>2025-08-04T16:44:00+08:00</published><updated>2025-08-04T16:44:00+08:00</updated><id>http://localhost:4000/BlogsGuidesResources/how-to-create-jekyll-website</id><content type="html" xml:base="http://localhost:4000/BlogsGuidesResources/how-to-create-jekyll-website.html"><![CDATA[<h1 id="creating-a-jekyll-website-using-rbenv-on-linux-step-by-step-guide"><strong>Creating a Jekyll Website Using rbenv on Linux (Step-by-Step Guide)</strong></h1>
+
+<p>This tutorial will guide you through setting up a <strong>Jekyll static website</strong> using <strong>rbenv</strong> (Ruby environment manager) on Linux (tested on Arch, Ubuntu, and Fedora).</p>
+
+<hr />
+
+<h2 id="prerequisites"><strong>Prerequisites</strong></h2>
+<ul>
+  <li>A Linux-based OS (Arch, Ubuntu, Fedora, etc.)</li>
+  <li>Basic terminal knowledge</li>
+  <li>Git (for version control)</li>
+</ul>
+
+<hr />
+
+<h2 id="step-1-install-rbenv-and-ruby"><strong>Step 1: Install rbenv and Ruby</strong></h2>
+
+<h3 id="11-install-rbenv-and-ruby-build"><strong>1.1 Install rbenv and ruby-build</strong></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># On Arch Linux</span>
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> rbenv ruby-build
+
+<span class="c"># On Ubuntu/Debian</span>
+<span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>rbenv ruby-build
+
+<span class="c"># On Fedora</span>
+<span class="nb">sudo </span>dnf <span class="nb">install </span>rbenv ruby-build
+</code></pre></div></div>
+
+<h3 id="12-add-rbenv-to-your-shell"><strong>1.2 Add rbenv to your shell</strong></h3>
+<p>Add these lines to <code class="language-plaintext highlighter-rouge">~/.bashrc</code> or <code class="language-plaintext highlighter-rouge">~/.zshrc</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.rbenv/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+<span class="nb">eval</span> <span class="s2">"</span><span class="si">$(</span>rbenv init -<span class="si">)</span><span class="s2">"</span>
+</code></pre></div></div>
+<p>Then reload your shell:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">source</span> ~/.bashrc  <span class="c"># or source ~/.zshrc</span>
+</code></pre></div></div>
+
+<h3 id="13-install-a-ruby-version-eg-330"><strong>1.3 Install a Ruby version (e.g., 3.3.0)</strong></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rbenv <span class="nb">install </span>3.3.0
+rbenv global 3.3.0  <span class="c"># Set as default</span>
+</code></pre></div></div>
+<p>Verify Ruby is installed:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ruby <span class="nt">-v</span>  <span class="c"># Should show Ruby 3.3.0</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="step-2-install-jekyll-and-bundler"><strong>Step 2: Install Jekyll and Bundler</strong></h2>
+
+<h3 id="21-install-jekyll--bundler"><strong>2.1 Install Jekyll &amp; Bundler</strong></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>jekyll bundler
+</code></pre></div></div>
+<p>Verify installation:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll <span class="nt">-v</span>  <span class="c"># Should show Jekyll version</span>
+</code></pre></div></div>
+
+<h3 id="22-fix-missing-dependencies-if-any"><strong>2.2 Fix Missing Dependencies (if any)</strong></h3>
+<p>Some Ruby 3.4+ systems require extra gems:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>erb logger forwardable <span class="nb">base64</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="step-3-create-a-new-jekyll-site"><strong>Step 3: Create a New Jekyll Site</strong></h2>
+
+<h3 id="31-generate-a-new-site"><strong>3.1 Generate a New Site</strong></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll new my-jekyll-site
+<span class="nb">cd </span>my-jekyll-site
+</code></pre></div></div>
+
+<h3 id="32-install-dependencies"><strong>3.2 Install Dependencies</strong></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="step-4-configure-jekyll-for-local-development"><strong>Step 4: Configure Jekyll for Local Development</strong></h2>
+
+<h3 id="41-edit-_configyml-optional"><strong>4.1 Edit <code class="language-plaintext highlighter-rouge">_config.yml</code> (Optional)</strong></h3>
+<p>Open <code class="language-plaintext highlighter-rouge">_config.yml</code> and modify:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s">My Awesome Site</span>
+<span class="na">description</span><span class="pi">:</span> <span class="s">A Jekyll-powered blog</span>
+<span class="na">theme</span><span class="pi">:</span> <span class="s">minima</span>  <span class="c1"># Default theme</span>
+</code></pre></div></div>
+
+<h3 id="42-run-jekyll-locally"><strong>4.2 Run Jekyll Locally</strong></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">exec </span>jekyll serve <span class="nt">--livereload</span>
+</code></pre></div></div>
+<ul>
+  <li>Your site will be available at:<br />
+<strong>👉 http://localhost:4000</strong></li>
+</ul>
+
+<hr />
+
+<h2 id="step-5-customize-your-site"><strong>Step 5: Customize Your Site</strong></h2>
+
+<h3 id="51-change-themes-optional"><strong>5.1 Change Themes (Optional)</strong></h3>
+<p>Edit <code class="language-plaintext highlighter-rouge">Gemfile</code> and add a theme (e.g., <strong>Minimal Mistakes</strong>):</p>
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">gem</span> <span class="s2">"minimal-mistakes-jekyll"</span>
+</code></pre></div></div>
+<p>Then update:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install</span>
+</code></pre></div></div>
+<p>Update <code class="language-plaintext highlighter-rouge">_config.yml</code>:</p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">theme</span><span class="pi">:</span> <span class="s">minimal-mistakes-jekyll</span>
+</code></pre></div></div>
+
+<h3 id="52-add-new-posts"><strong>5.2 Add New Posts</strong></h3>
+<p>Create a new Markdown file in <code class="language-plaintext highlighter-rouge">_posts/</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"---
+title: 'My First Post'
+date: </span><span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%Y-%m-%d'</span><span class="si">)</span><span class="s2">
+---"</span> <span class="o">&gt;</span> _posts/<span class="si">$(</span><span class="nb">date</span> +<span class="s1">'%Y-%m-%d'</span><span class="si">)</span><span class="nt">-my-first-post</span>.md
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="step-6-deploy-to-github-pages-optional"><strong>Step 6: Deploy to GitHub Pages (Optional)</strong></h2>
+
+<h3 id="61-initialize-git"><strong>6.1 Initialize Git</strong></h3>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git init
+git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"Initial Jekyll setup"</span>
+</code></pre></div></div>
+
+<h3 id="62-push-to-github"><strong>6.2 Push to GitHub</strong></h3>
+<ol>
+  <li>Create a new repo on GitHub (e.g., <code class="language-plaintext highlighter-rouge">username.github.io</code>)</li>
+  <li>Push your site:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git remote add origin https://github.com/username/username.github.io.git
+git push <span class="nt">-u</span> origin main
+</code></pre></div>    </div>
+  </li>
+  <li>Enable <strong>GitHub Pages</strong> in repo settings (under <code class="language-plaintext highlighter-rouge">Pages</code>).</li>
+</ol>
+
+<hr />
+
+<h2 id="troubleshooting"><strong>Troubleshooting</strong></h2>
+
+<h3 id="1-rbenv-command-not-found"><strong>1. <code class="language-plaintext highlighter-rouge">rbenv: command not found</code></strong></h3>
+<p>Ensure <code class="language-plaintext highlighter-rouge">rbenv</code> is in your <code class="language-plaintext highlighter-rouge">PATH</code> (check <code class="language-plaintext highlighter-rouge">~/.bashrc</code> or <code class="language-plaintext highlighter-rouge">~/.zshrc</code>).</p>
+
+<h3 id="2-jekyll-serve-fails-with-missing-gems"><strong>2. <code class="language-plaintext highlighter-rouge">Jekyll serve</code> fails with missing gems</strong></h3>
+<p>Run:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle <span class="nb">install
+</span>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<h3 id="3-cannot-load-such-file----erb"><strong>3. <code class="language-plaintext highlighter-rouge">Cannot load such file -- erb</code></strong></h3>
+<p>Install missing Ruby core libraries:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gem <span class="nb">install </span>erb logger forwardable
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+<p>You now have a <strong>fully functional Jekyll website</strong> running locally with <code class="language-plaintext highlighter-rouge">rbenv</code>!</p>
+
+<h3 id="next-steps"><strong>Next Steps</strong></h3>
+<ul>
+  <li><a href="https://jekyllthemes.io/">Explore Jekyll Themes</a></li>
+  <li><a href="https://www.markdownguide.org/">Learn Markdown for posts</a></li>
+  <li><a href="https://jekyllrb.com/docs/deployment/">Deploy to Netlify/Vercel</a></li>
+</ul>
+
+<p>🚀 <strong>Happy blogging!</strong> 🚀</p>]]></content><author><name>Amrit Dhakal</name></author><category term="website" /><category term="github pages" /><category term="jekyllm" /><category term="blogging" /><category term="tutorial" /><summary type="html"><![CDATA[Creating Jekyll based website on the go.]]></summary></entry></feed>

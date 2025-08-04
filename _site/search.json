@@ -1,0 +1,43 @@
+[
+  
+    {
+      "title"       : "Deleting git branches",
+      "category"    : "",
+      "tags"        : "blogging, tutorial",
+      "url"         : "./first-blog.html",
+      "date"        : "2025-08-04 21:31:00 +0800",
+      "description" : "Deleting git branches",
+      "content"     : "To completely reset your Git repository to a state with no branches (essentially a fresh start while keeping your files), follow these steps:1. Delete All Branches (Including main/master)# Move to a temporary branch (can't delete current branch)git checkout --orphan temp_branch# Delete ALL branches except temp_branchgit branch | grep -v \"temp_branch\" | xargs git branch -D2. Remove All Git History# Remove all tracked files (keeps working files)git rm -rf .# Remove Git metadata (except .git/config)rm -rf .git/refs .git/objects .git/logs3. Reinitialize Git# Fresh Git init (keeps your files)git init# Optional: Recreate main branchgit checkout -b main4. Push to Remote (If Needed)# Force-push empty state (destroys remote history)git remote add origin &lt;your-repo-url&gt;git push --force origin mainWhat This Does Creates a new Git history with no branches initially Preserves your working files (they become unstaged) Clears all commit history, tags, and branchesAlternative (Nuclear Option)To completely remove Git and start fresh:rm -rf .git # Deletes all Git datagit init # New repositoryImportant Notes⚠️ This is destructive! You’ll lose all branch history Remote repos need --force pushes Backup first if unsure (cp -r project project-backup)After Resetting Add files: git add .git commit -m \"Initial commit\" Connect to remote: git remote add origin &lt;your-repo-url&gt;git push -u origin main"
+    } ,
+  
+    {
+      "title"       : "How to Create Jekyll Websites Part 2",
+      "category"    : "",
+      "tags"        : "coding, python",
+      "url"         : "./creating-gh-pages.html",
+      "date"        : "2025-08-04 17:51:00 +0800",
+      "description" : "Creating github pages from exitsting jekyll themes",
+      "content"     : "Creating github pages from exitsting jekyll themes Search and find a repository theme you like Fork or clone it to the local machine Edit the main parts to see the changes Use installed jekyll and ruby to see changes locally After enough changes to post it on the github pages open bash terminal and use following codes First cd to the folder where the cloned and edited themed page is then Delete previous .git rm rf .git Initiate new .git git init Checkout github pages branches git checkout -b gh-pages To see the git status of current directory git status Stage all files and folders in the current directory to commit to github pages git add . Initial commit git commit -m \"Initial commit\" Create a empty repository in github Now to link the current local repository to the github repository we just created. Go and grab the link from the newly created empty repository the link with remote add origin - fifth line, then use following command in local repository git remote add origin http://github.com ... Now we just push the gh-pages git push origin gh-pages Go ahead and refresh the github repository online and we can see the files uploaded. Make sure the branch is gh-pages and the all the files are there. After that just goto Settings tab on top and then go to Pages tab on left where you can see the link to newly created github page as Your site is live at https://Username.github.io/RepositoryName/.Video tutorial: https://www.youtube.com/watch?v=fqFjuX4VZmU"
+    } ,
+  
+    {
+      "title"       : "New tutorial ready to write",
+      "category"    : "",
+      "tags"        : "coding, python",
+      "url"         : "./New-Tutrial.html",
+      "date"        : "2025-08-04 17:51:00 +0800",
+      "description" : "New tutorial or blog",
+      "content"     : "Content goes here"
+    } ,
+  
+    {
+      "title"       : "How to Create Jekyll Website Part 1",
+      "category"    : "",
+      "tags"        : "website, github pages, jekyllm, blogging, tutorial",
+      "url"         : "./how-to-create-jekyll-website.html",
+      "date"        : "2025-08-04 16:44:00 +0800",
+      "description" : "Creating Jekyll based website on the go.",
+      "content"     : "Creating a Jekyll Website Using rbenv on Linux (Step-by-Step Guide)This tutorial will guide you through setting up a Jekyll static website using rbenv (Ruby environment manager) on Linux (tested on Arch, Ubuntu, and Fedora).Prerequisites A Linux-based OS (Arch, Ubuntu, Fedora, etc.) Basic terminal knowledge Git (for version control)Step 1: Install rbenv and Ruby1.1 Install rbenv and ruby-build# On Arch Linuxsudo pacman -S rbenv ruby-build# On Ubuntu/Debiansudo apt updatesudo apt install rbenv ruby-build# On Fedorasudo dnf install rbenv ruby-build1.2 Add rbenv to your shellAdd these lines to ~/.bashrc or ~/.zshrc:export PATH=\"$HOME/.rbenv/bin:$PATH\"eval \"$(rbenv init -)\"Then reload your shell:source ~/.bashrc # or source ~/.zshrc1.3 Install a Ruby version (e.g., 3.3.0)rbenv install 3.3.0rbenv global 3.3.0 # Set as defaultVerify Ruby is installed:ruby -v # Should show Ruby 3.3.0Step 2: Install Jekyll and Bundler2.1 Install Jekyll &amp; Bundlergem install jekyll bundlerVerify installation:jekyll -v # Should show Jekyll version2.2 Fix Missing Dependencies (if any)Some Ruby 3.4+ systems require extra gems:gem install erb logger forwardable base64Step 3: Create a New Jekyll Site3.1 Generate a New Sitejekyll new my-jekyll-sitecd my-jekyll-site3.2 Install Dependenciesbundle installStep 4: Configure Jekyll for Local Development4.1 Edit _config.yml (Optional)Open _config.yml and modify:title: My Awesome Sitedescription: A Jekyll-powered blogtheme: minima # Default theme4.2 Run Jekyll Locallybundle exec jekyll serve --livereload Your site will be available at:👉 http://localhost:4000Step 5: Customize Your Site5.1 Change Themes (Optional)Edit Gemfile and add a theme (e.g., Minimal Mistakes):gem \"minimal-mistakes-jekyll\"Then update:bundle installUpdate _config.yml:theme: minimal-mistakes-jekyll5.2 Add New PostsCreate a new Markdown file in _posts/:echo \"---title: 'My First Post'date: $(date +'%Y-%m-%d')---\" &gt; _posts/$(date +'%Y-%m-%d')-my-first-post.mdStep 6: Deploy to GitHub Pages (Optional)6.1 Initialize Gitgit initgit add .git commit -m \"Initial Jekyll setup\"6.2 Push to GitHub Create a new repo on GitHub (e.g., username.github.io) Push your site: git remote add origin https://github.com/username/username.github.io.gitgit push -u origin main Enable GitHub Pages in repo settings (under Pages).Troubleshooting1. rbenv: command not foundEnsure rbenv is in your PATH (check ~/.bashrc or ~/.zshrc).2. Jekyll serve fails with missing gemsRun:bundle installbundle exec jekyll serve3. Cannot load such file -- erbInstall missing Ruby core libraries:gem install erb logger forwardableConclusionYou now have a fully functional Jekyll website running locally with rbenv!Next Steps Explore Jekyll Themes Learn Markdown for posts Deploy to Netlify/Vercel🚀 Happy blogging! 🚀"
+    } 
+  
+]
