@@ -56,7 +56,7 @@ Coming back to the topic of Distrowatch. I found that CachyOS was trending at to
 - **[OverTheWire Bandit](http://overthewire.org/wargames/bandit/)** – A game-based SSH terminal for learning Linux security.  
 - **[Katacoda (Archived but still works)](https://www.katacoda.com/courses/linux/playground)** – Formerly provided free Linux terminals (some instances still functional).  
 
-### 8. Browser-Based Shells for Quick Testing**  
+### 8. Browser-Based Shells for Quick Testing 
 - **[ShellCheck](https://www.shellcheck.net/)** – Not a full terminal, but great for Bash script validation.  
 - **[ExplainShell](https://explainshell.com/)** – Helps understand Linux commands (no execution).  
 
